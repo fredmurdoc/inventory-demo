@@ -18,7 +18,7 @@
 
 	<properties>
 		<java.version>1.8</java.version>
-		<tomcat.server.url>http://localhost:8080/manager/text</tomcat.server.url>
+		<tomcat.server.url>http://localhost:8180/manager/text</tomcat.server.url>
 		<tomcat.server.id>tomcat-dev-server</tomcat.server.id>
 		<website-root>http://localhost:8081/repository/nm-sites</website-root>
 		<project.build.sourceProperties>UTF-8</project.build.sourceProperties>
