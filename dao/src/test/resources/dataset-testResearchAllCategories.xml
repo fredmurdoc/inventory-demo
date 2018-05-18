@@ -1,5 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<dataset>
-   <T_CATEGORY k_puid="1" name="TEST"  />
-   <T_CATEGORY k_puid="2" name="SOUSTEST" fk_puid_parent="1" />
-</dataset>
