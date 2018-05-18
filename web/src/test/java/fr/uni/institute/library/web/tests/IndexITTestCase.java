@@ -1,8 +1,10 @@
 package fr.uni.institute.library.web.tests;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.fail;
 
 import java.io.IOException;
+import java.util.Properties;
 
 import org.junit.After;
 import org.junit.Before;
@@ -24,7 +26,14 @@ public class IndexITTestCase {
 
 	@Test
 	public void test() {
-		final String ADDRESS = "http://localhost:8080/web";
+		Properties props = new Properties();
+		try {
+			props.load(getClass().getClassLoader().getResourceAsStream("web-it.properties"));
+		} catch (IOException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
+		final String ADDRESS = props.getProperty("ti.server.url");
 
 		 	try {
 					WebConversation webConversation = new WebConversation();

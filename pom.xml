@@ -17,8 +17,9 @@
 	</modules>
 
 	<properties>
-		<java.version>1.8</java.version>
-		<tomcat.server.url>http://localhost:8180/manager/text</tomcat.server.url>
+		<java.version>1.7</java.version>
+		<tomcat.server.url>${tomcat.server.root}/manager/text</tomcat.server.url>
+		<tomcat.server.root>http://localhost:8180</tomcat.server.root>
 		<tomcat.server.id>tomcat-dev-server</tomcat.server.id>
 		<website-root>http://localhost:8081/repository/nm-sites</website-root>
 		<project.build.sourceProperties>UTF-8</project.build.sourceProperties>
@@ -34,7 +35,7 @@
 		<profile>
 			<id>ci</id>
 			<properties>
-				<tomcat.server.url>http://tomcat:8080/manager/text</tomcat.server.url>
+				<tomcat.server.root>http://tomcat:8080</tomcat.server.root>
 			</properties>
 		</profile>
 	</profiles>
