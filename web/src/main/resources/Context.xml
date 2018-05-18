@@ -1,0 +1,6 @@
+<Context docBase="UniLibraryWeb" path="/UniLibraryWeb" reloadable="true">
+	
+	 <ResourceLink name="jdbc/UniLibraryDS"
+            global="jdbc/UniLibraryDSGlobal"
+            type="javax.sql.DataSource" />
+</Context>

@@ -1,0 +1,308 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<groupId>fr.orsys.library</groupId>
+	<artifactId>inventory</artifactId>
+	<version>1.0.0</version>
+	<packaging>pom</packaging>
+	<name>Inventaire</name>
+	<description>Gestion de l'inventaire</description>
+	<!-- <url>${website-root}/</url> -->
+	<modules>
+		<module>dao</module>
+		<module>model</module>
+		<module>service</module>
+		<module>web</module>
+	</modules>
+
+	<properties>
+		<java.version>1.8</java.version>
+		<tomcat.server.url>http://localhost:8080/manager/text</tomcat.server.url>
+		<tomcat.server.id>tomcat-dev-server</tomcat.server.id>
+		<website-root>http://localhost:8081/repository/nm-sites</website-root>
+		<project.build.sourceProperties>UTF-8</project.build.sourceProperties>
+	</properties>
+
+	<dependencyManagement>
+		<dependencies>
+			<!-- -->
+			<dependency>
+				<groupId>junit</groupId>
+				<artifactId>junit</artifactId>
+				<version>4.12</version>
+				<scope>test</scope>
+			</dependency>
+			<dependency>
+				<groupId>org.dbunit</groupId>
+				<artifactId>dbunit</artifactId>
+				<version>2.5.4</version>
+				<scope>test</scope>
+			</dependency>
+
+			<dependency>
+				<groupId>hsqldb</groupId>
+				<artifactId>hsqldb</artifactId>
+				<version>1.8.0.10</version>
+				<scope>test</scope>
+			</dependency>
+
+
+
+			<!-- ARQUILLIAN -->
+
+
+			<dependency>
+				<groupId>org.jboss.arquillian</groupId>
+				<artifactId>arquillian-bom</artifactId>
+				<version>1.4.0.Final</version>
+				<scope>import</scope>
+				<type>pom</type>
+			</dependency>
+
+
+			<!-- -->
+
+			<!-- https://mvnrepository.com/artifact/org.slf4j/slf4j-log4j12 -->
+			<dependency>
+				<groupId>org.slf4j</groupId>
+				<artifactId>slf4j-log4j12</artifactId>
+				<version>1.7.25</version>
+				<scope>test</scope>
+			</dependency>
+
+
+
+			<!-- https://mvnrepository.com/artifact/org.slf4j/slf4j-api -->
+			<dependency>
+				<groupId>org.slf4j</groupId>
+				<artifactId>slf4j-api</artifactId>
+				<version>1.7.25</version>
+			</dependency>
+
+			<!-- -->
+
+			<dependency>
+				<groupId>log4j</groupId>
+				<artifactId>log4j</artifactId>
+				<version>1.2.17</version>
+			</dependency>
+			<!-- -->
+			<dependency>
+				<groupId>jstl</groupId>
+				<artifactId>jstl</artifactId>
+				<version>1.2</version>
+			</dependency>
+
+			<!-- https://mvnrepository.com/artifact/javax/javaee-web-api -->
+			<dependency>
+				<groupId>javax</groupId>
+				<artifactId>javaee-web-api</artifactId>
+				<version>7.0</version>
+				<scope>provided</scope>
+			</dependency>
+			<!-- https://mvnrepository.com/artifact/org.apache.taglibs/taglibs-standard-impl -->
+			<dependency>
+				<groupId>org.apache.taglibs</groupId>
+				<artifactId>taglibs-standard-impl</artifactId>
+				<version>1.2.5</version>
+			</dependency>
+
+
+		</dependencies>
+	</dependencyManagement>
+	<dependencies>
+		<dependency>
+			<groupId>junit</groupId>
+			<artifactId>junit</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.slf4j</groupId>
+			<artifactId>slf4j-log4j12</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>log4j</groupId>
+			<artifactId>log4j</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.dbunit</groupId>
+			<artifactId>dbunit</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>hsqldb</groupId>
+			<artifactId>hsqldb</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.jboss.arquillian.junit</groupId>
+			<artifactId>arquillian-junit-container</artifactId>
+			<scope>test</scope>
+		</dependency>
+	</dependencies>
+	<build>
+		<pluginManagement>
+			<plugins>
+
+				<plugin>
+					<artifactId>maven-compiler-plugin</artifactId>
+					<version>3.7.0</version>
+					<configuration>
+						<source>${java.version}</source>
+						<target>${java.version}</target>
+					</configuration>
+				</plugin>
+				<plugin>
+					<artifactId>maven-war-plugin</artifactId>
+					<version>3.2.1</version>
+				</plugin>
+				<plugin>
+					<groupId>org.apache.tomcat.maven</groupId>
+					<artifactId>tomcat7-maven-plugin</artifactId>
+					<version>2.2</version>
+					<configuration>
+						<url>${tomcat.server.url}</url>
+						<server>${tomcat.server.id}</server>
+					</configuration>
+				</plugin>
+
+
+				<plugin>
+					<artifactId>maven-site-plugin</artifactId>
+					<dependencies>
+						<dependency>
+							<groupId>org.apache.maven.wagon</groupId>
+							<artifactId>wagon-webdav-jackrabbit</artifactId>
+							<version>3.0.0</version>
+						</dependency>
+					</dependencies>
+				</plugin>
+
+
+
+<!-- 				<plugin> -->
+<!-- 					<groupId>com.spotify</groupId> -->
+<!-- 					<artifactId>docker-maven-plugin</artifactId> -->
+<!-- 					<version>1.0.0</version> -->
+<!-- 					<configuration> -->
+<!-- 						<imageName>orsys:tomcat</imageName> -->
+<!-- 						<dockerDirectory>docker</dockerDirectory> -->
+<!-- 						<resources> -->
+<!-- 							<resource> -->
+<!-- 								<targetPath>/</targetPath> -->
+<!-- 								<directory>${project.build.directory}</directory> -->
+<!-- 								<include>${project.build.finalName}.jar</include> -->
+<!-- 							</resource> -->
+<!-- 						</resources> -->
+<!-- 					</configuration> -->
+<!-- 				</plugin> -->
+
+			</plugins>
+		</pluginManagement>
+
+		<plugins>
+			<plugin>
+				<artifactId>maven-surefire-plugin</artifactId>
+				<configuration>
+					<excludes>
+						<exclude>**/*ITTestCase.java</exclude>
+					</excludes>
+				</configuration>
+			</plugin>
+
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-failsafe-plugin</artifactId>
+				<version>2.21.0</version>
+				<executions>
+					<execution>
+						<id>integration-test</id>
+						<goals>
+							<goal>integration-test</goal>
+						</goals>
+					</execution>
+					<execution>
+						<id>verify</id>
+						<goals>
+							<goal>verify</goal>
+						</goals>
+					</execution>
+				</executions>
+				<configuration>
+					<includes>
+						<include>**/*ITTestCase*</include>
+					</includes>
+				</configuration>
+			</plugin>
+		</plugins>
+	</build>
+	<reporting>
+		<plugins>
+			<plugin>
+				<artifactId>maven-javadoc-plugin</artifactId>
+				<version>3.0.0</version>
+			</plugin>
+
+			<plugin>
+				<artifactId>maven-checkstyle-plugin</artifactId>
+				<version>3.0.0</version>
+			</plugin>
+			<plugin>
+				<artifactId>maven-jxr-plugin</artifactId>
+				<version>2.5</version>
+			</plugin>
+			<plugin>
+				<groupId>org.codehaus.mojo</groupId>
+				<artifactId>cobertura-maven-plugin</artifactId>
+				<version>2.7</version>
+			</plugin>
+			<plugin>
+				<groupId>org.codehaus.mojo</groupId>
+				<artifactId>findbugs-maven-plugin</artifactId>
+				<version>3.0.5</version>
+			</plugin>
+
+
+		</plugins>
+	</reporting>
+<!-- 	<pluginRepositories> -->
+<!-- 		<pluginRepository> -->
+<!-- 			<id>my-internal-site</id> -->
+<!-- 			<url>http://localhost:8081</url> -->
+<!-- 		</pluginRepository> -->
+<!-- 	</pluginRepositories> -->
+
+<!-- 	<repositories> -->
+<!-- 		<repository> -->
+<!-- 			<id>my-project-doc-site</id> -->
+<!-- 			<url>http://localhost:8081/repository/maven-public/</url> -->
+<!-- 			<releases> -->
+<!-- 				<enabled>true</enabled> -->
+<!-- 			</releases> -->
+<!-- 			<snapshots> -->
+<!-- 				<enabled>false</enabled> -->
+<!-- 			</snapshots> -->
+<!-- 		</repository> -->
+		
+<!-- 	</repositories> -->
+
+<!-- 	<distributionManagement> -->
+<!-- 		<repository> -->
+<!-- 			<uniqueVersion>false</uniqueVersion> -->
+<!-- 			<id>my-project-releases-site</id> -->
+<!-- 			<name>Nantes Metropole Repository</name> -->
+<!-- 			<url>http://localhost:8081/repository/nm-releases/</url> -->
+<!-- 			<layout>default</layout> -->
+<!-- 		</repository> -->
+<!-- 		<snapshotRepository> -->
+<!-- 			<uniqueVersion>true</uniqueVersion> -->
+<!-- 			<id>my-project-snapshots-site</id> -->
+<!-- 			<name>Nantes Metropole Snapshots</name> -->
+<!-- 			<url>http://localhost:8081/repository/nm-snapshots/</url> -->
+<!-- 			<layout>legacy</layout> -->
+<!-- 		</snapshotRepository> -->
+<!-- 		<site> -->
+<!-- 			<id>my-project-site</id> -->
+<!-- 			<url>dav:${website-root}</url> -->
+<!-- 		</site> -->
+<!-- 	</distributionManagement> -->
+
+</project>

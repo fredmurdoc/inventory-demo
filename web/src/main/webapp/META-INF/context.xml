@@ -1,0 +1,5 @@
+<Context>
+	 <ResourceLink name="jdbc/UniLibraryDS"
+            global="jdbc/UniLibraryDSGlobal"
+            type="javax.sql.DataSource" />
+</Context>
